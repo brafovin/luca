@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DrinkBar – Getränke bestellen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>🍹 DrinkBar</h1>
+      <button class="cart-btn" id="cartToggle">
+        Warenkorb <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Frische Getränke, direkt zu dir</h2>
+      <p>Wähle deine Lieblingsgetränke aus und bestelle bequem online.</p>
+    </section>
+
+    <section class="categories">
+      <button class="cat-btn active" data-cat="all">Alle</button>
+      <button class="cat-btn" data-cat="soft">Softdrinks</button>
+      <button class="cat-btn" data-cat="juice">Säfte</button>
+      <button class="cat-btn" data-cat="cocktail">Cocktails</button>
+      <button class="cat-btn" data-cat="hot">Heißgetränke</button>
+    </section>
+
+    <section class="menu" id="menu"></section>
+  </main>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart" id="cart">
+    <div class="cart-header">
+      <h3>Warenkorb</h3>
+      <button class="close-cart" id="closeCart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Dein Warenkorb ist leer.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        Gesamt: <strong id="cartTotal">0,00 €</strong>
+      </div>
+      <button class="order-btn" id="orderBtn" disabled>Jetzt bestellen</button>
+    </div>
+  </aside>
+
+  <!-- Order Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <h3>Bestellung aufgeben</h3>
+      <form id="orderForm">
+        <label>
+          Name
+          <input type="text" id="nameInput" placeholder="Dein Name" required />
+        </label>
+        <label>
+          Adresse
+          <input type="text" id="addressInput" placeholder="Straße, Hausnummer, PLZ" required />
+        </label>
+        <label>
+          Telefon
+          <input type="tel" id="phoneInput" placeholder="+49 123 456789" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancelOrder">Abbrechen</button>
+          <button type="submit" class="btn-primary">Bestellen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successOverlay">
+    <div class="modal success-modal">
+      <div class="success-icon">✓</div>
+      <h3>Bestellung erfolgreich!</h3>
+      <p id="successMsg"></p>
+      <button class="btn-primary" id="successClose">Schließen</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
