@@ -1,160 +1,190 @@
-const drinks = [
-  { id: 1,  name: "Cola Classic",       emoji: "🥤", desc: "Der Klassiker – eisgekühlt und sprudelnd.",     price: 2.50, cat: "soft" },
-  { id: 2,  name: "Limonade Zitrone",   emoji: "🍋", desc: "Erfrischend süß-saure Zitronenlimonade.",      price: 2.20, cat: "soft" },
-  { id: 3,  name: "Mineralwasser",      emoji: "💧", desc: "Still oder mit Kohlensäure, 0,5 l.",            price: 1.80, cat: "soft" },
-  { id: 4,  name: "Eistee Pfirsich",    emoji: "🍑", desc: "Süßer Eistee mit Pfirsichgeschmack.",          price: 2.30, cat: "soft" },
-  { id: 5,  name: "Orangensaft",        emoji: "🍊", desc: "Frisch gepresster Orangensaft, 0,3 l.",        price: 3.20, cat: "juice" },
-  { id: 6,  name: "Apfelsaft",          emoji: "🍎", desc: "Naturtrüber Apfelsaft aus der Region.",        price: 2.80, cat: "juice" },
-  { id: 7,  name: "Mangosaft",          emoji: "🥭", desc: "Exotischer Mangosaft, 100 % Frucht.",           price: 3.50, cat: "juice" },
-  { id: 8,  name: "Multivitaminsaft",   emoji: "🍇", desc: "Vitamingemixt aus 7 Früchten.",                price: 3.00, cat: "juice" },
-  { id: 9,  name: "Mojito",             emoji: "🍃", desc: "Frische Minze, Limette und Zuckersirup.",      price: 5.90, cat: "cocktail" },
-  { id: 10, name: "Piña Colada",        emoji: "🍍", desc: "Ananas, Kokosnuss – tropisches Feeling.",      price: 6.50, cat: "cocktail" },
-  { id: 11, name: "Strawberry Daiquiri",emoji: "🍓", desc: "Süßer Erdbeer-Cocktail mit Zitronensäure.",   price: 6.20, cat: "cocktail" },
-  { id: 12, name: "Hugo",               emoji: "🌸", desc: "Holunderblüte, Minze, Prosecco – leicht.",    price: 5.50, cat: "cocktail" },
-  { id: 13, name: "Espresso",           emoji: "☕", desc: "Kräftiger Espresso, doppelt.",                 price: 2.50, cat: "hot" },
-  { id: 14, name: "Cappuccino",         emoji: "🫧", desc: "Espresso mit samtigem Milchschaum.",           price: 3.20, cat: "hot" },
-  { id: 15, name: "Heiße Schokolade",   emoji: "🍫", desc: "Cremig-süße Kakao-Köstlichkeit.",             price: 3.50, cat: "hot" },
-  { id: 16, name: "Ingwer-Tee",         emoji: "🫖", desc: "Wärmender Tee mit frischem Ingwer & Honig.",  price: 3.00, cat: "hot" },
+const catalog = [
+  // Cola
+  { id: 1,  name: "Coca-Cola",          emoji: "🥤", desc: "Der Klassiker – unverwechselbar prickelnd.",    price: 1.99, cat: "cola", vol: "0,5 l" },
+  { id: 2,  name: "Coca-Cola Zero",     emoji: "⬛", desc: "Voller Cola-Geschmack, ohne Kalorien.",         price: 1.99, cat: "cola", vol: "0,5 l" },
+  { id: 3,  name: "Pepsi",              emoji: "🫙", desc: "Süß, spritzig und erfrischend.",                price: 1.89, cat: "cola", vol: "0,5 l" },
+  { id: 4,  name: "Pepsi Max",          emoji: "🖤", desc: "Null Kalorien, maximaler Geschmack.",           price: 1.89, cat: "cola", vol: "0,5 l" },
+  // Limo
+  { id: 5,  name: "Fanta Orange",       emoji: "🍊", desc: "Fruchtig-süße Orangenlimonade.",               price: 1.79, cat: "limo", vol: "0,5 l", tag: "Beliebt" },
+  { id: 6,  name: "Sprite",             emoji: "🌿", desc: "Zitrone-Limette, kristallklar und kalt.",       price: 1.79, cat: "limo", vol: "0,5 l" },
+  { id: 7,  name: "Mirinda Lemon",      emoji: "🍋", desc: "Frisch-saure Zitronenlimonade.",               price: 1.69, cat: "limo", vol: "0,5 l" },
+  { id: 8,  name: "Schwip Schwap",      emoji: "🩷", desc: "Die Cola-Orange-Kombi – einzigartig.",         price: 1.79, cat: "limo", vol: "0,5 l" },
+  { id: 9,  name: "Almdudler",          emoji: "🌼", desc: "Österreichischer Kräuterlimonade-Genuss.",     price: 1.99, cat: "limo", vol: "0,5 l" },
+  // Energy
+  { id: 10, name: "Red Bull",           emoji: "⚡", desc: "Verleiht Flügel. Original Energy Drink.",      price: 2.49, cat: "energy", vol: "0,25 l", tag: "Top-Seller" },
+  { id: 11, name: "Monster Energy",     emoji: "🐉", desc: "Unleash the Beast – intensiver Boost.",        price: 2.29, cat: "energy", vol: "0,5 l" },
+  { id: 12, name: "Rockstar",           emoji: "🎸", desc: "Live Life Full Throttle.",                     price: 2.19, cat: "energy", vol: "0,5 l" },
+  { id: 13, name: "Reign Storm",        emoji: "🌪️", desc: "Zero Zucker, voll auf Energie.",              price: 2.39, cat: "energy", vol: "0,5 l" },
+  // Wasser
+  { id: 14, name: "Evian Still",        emoji: "💧", desc: "Natürliches Mineralwasser, still.",            price: 1.49, cat: "wasser", vol: "0,5 l" },
+  { id: 15, name: "Gerolsteiner Sprudel",emoji: "💦", desc: "Natürliche Mineralquelle mit Kohlensäure.",  price: 1.29, cat: "wasser", vol: "0,5 l" },
+  { id: 16, name: "Volvic",             emoji: "🏔️", desc: "Vulkanisches Mineralwasser aus Frankreich.", price: 1.39, cat: "wasser", vol: "0,5 l" },
+  // Saft
+  { id: 17, name: "Hohes C Orange",     emoji: "🍊", desc: "100 % Fruchtsaft, frisch gepresst.",           price: 2.29, cat: "saft", vol: "0,5 l", tag: "Frisch" },
+  { id: 18, name: "Rauch Apfel",        emoji: "🍎", desc: "Naturtrüber Apfelsaft aus dem Alpenraum.",     price: 2.19, cat: "saft", vol: "0,5 l" },
+  { id: 19, name: "Innocent Mango",     emoji: "🥭", desc: "Pure Mango – nur Frucht, nichts sonst.",       price: 2.79, cat: "saft", vol: "0,25 l" },
+  { id: 20, name: "Multivitamin",       emoji: "🍇", desc: "7 Früchte, voller Vitaminkick.",               price: 2.49, cat: "saft", vol: "0,5 l" },
 ];
 
-let cart = {};
-let activeCategory = "all";
+const fmt = n => n.toFixed(2).replace(".", ",") + " €";
+let cart = {};   // { id: qty }
 
-// --- Render Menu ---
-function renderMenu() {
-  const menu = document.getElementById("menu");
-  const filtered = activeCategory === "all"
-    ? drinks
-    : drinks.filter(d => d.cat === activeCategory);
-
-  menu.innerHTML = filtered.map(d => `
-    <div class="card">
-      <div class="card-img">${d.emoji}</div>
-      <div class="card-body">
-        <div class="card-name">${d.name}</div>
-        <div class="card-desc">${d.desc}</div>
-        <div class="card-footer">
-          <span class="card-price">${formatPrice(d.price)}</span>
-          <button class="add-btn" onclick="addToCart(${d.id})">+ Hinzufügen</button>
-        </div>
+// ── Product Grid ───────────────────────────────────
+function renderProducts(cat = "all") {
+  const list = cat === "all" ? catalog : catalog.filter(d => d.cat === cat);
+  document.getElementById("products").innerHTML = list.map(d => `
+    <article class="product-card">
+      <div class="pc-thumb">
+        ${d.emoji}
+        ${d.tag ? `<span class="pc-tag">${d.tag}</span>` : ""}
       </div>
-    </div>
+      <div class="pc-body">
+        <div class="pc-name">${d.name}</div>
+        <div class="pc-desc">${d.desc}</div>
+        <div class="pc-vol">${d.vol}</div>
+      </div>
+      <div class="pc-foot">
+        <span class="pc-price">${fmt(d.price)}</span>
+        <button class="pc-add" onclick="addItem(${d.id})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          In den Korb
+        </button>
+      </div>
+    </article>
   `).join("");
 }
 
-// --- Cart Logic ---
-function addToCart(id) {
+// ── Cart ───────────────────────────────────────────
+function addItem(id) {
   cart[id] = (cart[id] || 0) + 1;
-  updateCart();
+  refreshCart();
   openCart();
 }
 
 function changeQty(id, delta) {
-  cart[id] = (cart[id] || 0) + delta;
-  if (cart[id] <= 0) delete cart[id];
-  updateCart();
+  const next = (cart[id] || 0) + delta;
+  if (next <= 0) delete cart[id]; else cart[id] = next;
+  refreshCart();
 }
 
-function updateCart() {
-  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
-  const totalPrice = Object.entries(cart).reduce((sum, [id, qty]) => {
-    const drink = drinks.find(d => d.id === +id);
-    return sum + (drink ? drink.price * qty : 0);
+function refreshCart() {
+  const totalQty = Object.values(cart).reduce((s, v) => s + v, 0);
+  const totalPrice = Object.entries(cart).reduce((s, [id, qty]) => {
+    const d = catalog.find(x => x.id === +id);
+    return s + (d ? d.price * qty : 0);
   }, 0);
 
-  document.getElementById("cartCount").textContent = totalItems;
-  document.getElementById("cartTotal").textContent = formatPrice(totalPrice);
-  document.getElementById("orderBtn").disabled = totalItems === 0;
+  const badge = document.getElementById("badge");
+  badge.textContent = totalQty;
+  badge.hidden = totalQty === 0;
 
-  const cartItems = document.getElementById("cartItems");
-  if (totalItems === 0) {
-    cartItems.innerHTML = '<p class="cart-empty">Dein Warenkorb ist leer.</p>';
+  document.getElementById("cpTotal").textContent = fmt(totalPrice);
+  document.getElementById("checkoutBtn").disabled = totalQty === 0;
+
+  const body = document.getElementById("cpBody");
+  if (totalQty === 0) {
+    body.innerHTML = `<div class="cp-empty"><span>🛒</span><p>Noch nichts im Warenkorb</p></div>`;
     return;
   }
 
-  cartItems.innerHTML = Object.entries(cart).map(([id, qty]) => {
-    const drink = drinks.find(d => d.id === +id);
-    if (!drink) return "";
+  body.innerHTML = Object.entries(cart).map(([id, qty]) => {
+    const d = catalog.find(x => x.id === +id);
+    if (!d) return "";
     return `
-      <div class="cart-item">
-        <span class="ci-icon">${drink.emoji}</span>
-        <div class="ci-info">
-          <div class="ci-name">${drink.name}</div>
-          <div class="ci-price">${formatPrice(drink.price)} / Stk.</div>
+      <div class="cart-row">
+        <span class="cr-icon">${d.emoji}</span>
+        <div class="cr-info">
+          <div class="cr-name">${d.name}</div>
+          <div class="cr-price">${fmt(d.price)} / Stk. · ${d.vol}</div>
         </div>
-        <div class="ci-controls">
-          <button class="qty-btn" onclick="changeQty(${id}, -1)">−</button>
-          <span class="ci-qty">${qty}</span>
-          <button class="qty-btn" onclick="changeQty(${id}, 1)">+</button>
+        <div class="cr-controls">
+          <button class="qty-btn" onclick="changeQty(${id},-1)" aria-label="Weniger">−</button>
+          <span class="cr-qty">${qty}</span>
+          <button class="qty-btn" onclick="changeQty(${id},1)" aria-label="Mehr">+</button>
         </div>
-      </div>
-    `;
+      </div>`;
   }).join("");
 }
 
-// --- Cart UI ---
+// ── Cart Panel ─────────────────────────────────────
 function openCart() {
-  document.getElementById("cart").classList.add("open");
-  document.getElementById("cartOverlay").classList.add("open");
+  document.getElementById("cartPanel").classList.add("open");
+  document.getElementById("cartPanel").removeAttribute("aria-hidden");
+  document.getElementById("cartBackdrop").classList.add("open");
+  document.body.style.overflow = "hidden";
 }
 function closeCart() {
-  document.getElementById("cart").classList.remove("open");
-  document.getElementById("cartOverlay").classList.remove("open");
+  document.getElementById("cartPanel").classList.remove("open");
+  document.getElementById("cartPanel").setAttribute("aria-hidden", "true");
+  document.getElementById("cartBackdrop").classList.remove("open");
+  document.body.style.overflow = "";
 }
 
-// --- Order Flow ---
-function openOrderModal() {
+// ── Order Flow ─────────────────────────────────────
+function openOrderDialog() {
   closeCart();
-  document.getElementById("modalOverlay").classList.add("open");
-}
-function closeOrderModal() {
-  document.getElementById("modalOverlay").classList.remove("open");
-}
-
-function placeOrder(e) {
-  e.preventDefault();
-  const name = document.getElementById("nameInput").value.trim();
-  const address = document.getElementById("addressInput").value.trim();
-
-  const itemList = Object.entries(cart).map(([id, qty]) => {
-    const d = drinks.find(d => d.id === +id);
+  const summary = Object.entries(cart).map(([id, qty]) => {
+    const d = catalog.find(x => x.id === +id);
     return d ? `${qty}× ${d.name}` : "";
-  }).filter(Boolean).join(", ");
+  }).filter(Boolean).join(" · ");
+  document.getElementById("dlgSummary").textContent = summary;
+  document.getElementById("orderOverlay").classList.add("open");
+}
+function closeOrderDialog() {
+  document.getElementById("orderOverlay").classList.remove("open");
+}
 
-  closeOrderModal();
-  document.getElementById("successMsg").textContent =
-    `Hallo ${name}! Deine Bestellung (${itemList}) wird an ${address} geliefert.`;
+function submitOrder(e) {
+  e.preventDefault();
+  const name    = document.getElementById("fName").value.trim();
+  const street  = document.getElementById("fStreet").value.trim();
+  const zip     = document.getElementById("fZip").value.trim();
+  const city    = document.getElementById("fCity").value.trim();
+
+  closeOrderDialog();
+  document.getElementById("successDetail").textContent =
+    `Hallo ${name}! Deine Bestellung wird an ${street}, ${zip} ${city} geliefert. Du erhältst in Kürze eine Bestätigung.`;
   document.getElementById("successOverlay").classList.add("open");
 
   cart = {};
-  updateCart();
+  refreshCart();
   document.getElementById("orderForm").reset();
 }
 
-// --- Helpers ---
-function formatPrice(val) {
-  return val.toFixed(2).replace(".", ",") + " €";
-}
-
-// --- Event Listeners ---
-document.getElementById("cartToggle").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-document.getElementById("cartOverlay").addEventListener("click", closeCart);
-document.getElementById("orderBtn").addEventListener("click", openOrderModal);
-document.getElementById("cancelOrder").addEventListener("click", closeOrderModal);
-document.getElementById("orderForm").addEventListener("submit", placeOrder);
-document.getElementById("successClose").addEventListener("click", () => {
+// ── Event Listeners ────────────────────────────────
+document.getElementById("cartTrigger").addEventListener("click", openCart);
+document.getElementById("cartClose").addEventListener("click", closeCart);
+document.getElementById("cartBackdrop").addEventListener("click", closeCart);
+document.getElementById("checkoutBtn").addEventListener("click", openOrderDialog);
+document.getElementById("dlgClose").addEventListener("click", closeOrderDialog);
+document.getElementById("dlgCancel").addEventListener("click", closeOrderDialog);
+document.getElementById("orderForm").addEventListener("submit", submitOrder);
+document.getElementById("successOk").addEventListener("click", () => {
   document.getElementById("successOverlay").classList.remove("open");
 });
+document.getElementById("heroCta").addEventListener("click", () => {
+  document.querySelector(".products").scrollIntoView({ behavior: "smooth" });
+});
 
-document.querySelectorAll(".cat-btn").forEach(btn => {
+document.querySelectorAll(".nav-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    activeCategory = btn.dataset.cat;
-    renderMenu();
+    renderProducts(btn.dataset.cat);
   });
 });
 
-// --- Init ---
-renderMenu();
+// Escape closes dialogs
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if (document.getElementById("successOverlay").classList.contains("open")) {
+    document.getElementById("successOverlay").classList.remove("open");
+  } else if (document.getElementById("orderOverlay").classList.contains("open")) {
+    closeOrderDialog();
+  } else {
+    closeCart();
+  }
+});
+
+// ── Init ───────────────────────────────────────────
+renderProducts();
